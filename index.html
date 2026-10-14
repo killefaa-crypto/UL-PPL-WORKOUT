@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101c18">
+<meta name="description" content="Your UL Rest PPL home workout tracker">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<title>REPLOG — Workout Tracker</title>
+<style>
+:root{--bg:#f5f7f3;--card:#fff;--ink:#17231b;--muted:#68756b;--line:#e0e6df;--green:#b9f36a;--dark:#101c18;--accent:#477d31;--soft:#eaf5dd;--danger:#a63c3c}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}button,input,textarea{font:inherit}button{cursor:pointer}header{background:var(--dark);color:white;padding:calc(16px + env(safe-area-inset-top)) 16px 18px;border-radius:0 0 24px 24px}.brand{display:flex;align-items:center;gap:11px}.logo{display:grid;place-items:center;width:44px;height:44px;background:var(--green);color:var(--dark);font-weight:900;border-radius:13px;font-size:21px}.brand h1{font-size:20px;margin:0;letter-spacing:.08em}.brand p{font-size:11px;color:#b5c6ba;margin:2px 0 0;letter-spacing:.08em}.hero{margin-top:20px}.eyebrow{color:#b5c6ba;font-size:12px;text-transform:uppercase;letter-spacing:.09em}.hero h2{font-size:28px;margin:4px 0}.hero p{margin:0;color:#d1ddd4;font-size:13px}.progressline{height:8px;border-radius:99px;background:#34463b;overflow:hidden;margin-top:13px}.progressline span{display:block;height:100%;background:var(--green);width:0;transition:width .2s}.herofoot{display:flex;justify-content:space-between;align-items:end;margin-top:15px}.herofoot strong{font-size:25px;color:var(--green)}.herofoot small{display:block;color:#b5c6ba;font-size:11px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;padding:14px 14px 4px}.stat{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:12px}.stat b{display:block;font-size:21px}.stat span{font-size:11px;color:var(--muted)}main{padding:12px 14px 100px;max-width:760px;margin:auto}.section-title{font-size:19px;margin:18px 0 10px}.days{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.day{border:1px solid var(--line);background:var(--card);border-radius:13px;padding:10px 3px;color:var(--ink);font-size:12px}.day strong{display:block;font-size:14px}.day.active{background:var(--soft);border-color:#79a84b;color:#263d18}.day .tick{font-size:11px;color:var(--accent);height:14px}.focus{font-size:12px;color:var(--muted);margin:-4px 0 12px}.exercise{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:13px;margin:10px 0}.exhead{display:flex;gap:10px;align-items:flex-start}.check{width:22px;height:22px;accent-color:var(--accent);margin-top:2px;flex-shrink:0}.exname{font-weight:700}.rx{font-size:13px;color:var(--muted);margin-top:2px}.tag{font-size:11px;color:var(--muted);margin-top:4px}.done .exname{text-decoration:line-through;color:var(--muted)}.fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.fields label{display:block;color:var(--muted);font-size:12px;margin-bottom:5px}.fields input,.notes{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;background:#fbfcfa;color:var(--ink)}.notes{resize:vertical;min-height:85px}.btn{border:0;border-radius:12px;padding:12px 14px;font-weight:700}.primary{background:var(--dark);color:white;width:100%}.secondary{background:var(--soft);color:#263d18}.buttonrow{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin:10px 0}.weekrow{margin:12px 0}.weekhead{display:flex;justify-content:space-between;gap:8px;font-size:13px}.bar{height:6px;border-radius:99px;background:#e5e9e3;overflow:hidden;margin-top:7px}.bar span{display:block;height:100%;background:#79a84b}.logged{font-size:12px;color:var(--muted);margin-top:6px}.tabs{display:flex;gap:8px;margin-top:16px}.tab{flex:1;border:1px solid #526258;background:transparent;color:#d1ddd4;padding:10px;border-radius:12px}.tab.active{background:var(--green);color:var(--dark);border-color:var(--green);font-weight:800}.hidden{display:none!important}.hint{font-size:12px;color:var(--muted)}footer{padding:14px 0 0;color:var(--muted);font-size:11px;text-align:center}.install{margin:14px 14px 0;padding:12px;background:#eaf5dd;border-radius:13px;font-size:13px;display:none}.install button{margin-top:8px}@media(min-width:600px){main{padding-left:20px;padding-right:20px}.stats{padding-left:20px;padding-right:20px}.days{grid-template-columns:repeat(7,1fr)}}
+</style>
+</head>
+<body>
+<header>
+ <div class="brand"><div class="logo">R</div><div><h1>REPLOG</h1><p>YOUR HOME TRAINING LOG</p></div></div>
+ <div class="hero"><div class="eyebrow" id="heroDay">TODAY'S SESSION</div><h2 id="heroTitle">Upper day</h2><p id="heroFocus">Chest · Back · Shoulders · Arms</p>
+  <div class="herofoot"><div><strong id="heroCount">0/7</strong><small>Exercises completed</small></div><div style="text-align:right"><strong id="heroPct">0%</strong><small>Session progress</small></div></div>
+  <div class="progressline"><span id="heroBar"></span></div>
+ </div>
+ <div class="tabs"><button class="tab active" id="workoutTab">Workout</button><button class="tab" id="progressTab">Progress</button></div>
+</header>
+<div class="install" id="installBox">Install REPLOG on your home screen for an app-like experience.<br><button class="btn secondary" id="installBtn">Install app</button></div>
+<div class="stats">
+ <div class="stat"><b id="statDone">0</b><span>Exercise check-offs</span></div>
+ <div class="stat"><b id="statLogs">0</b><span>Exercises logged</span></div>
+ <div class="stat"><b id="statRate">0%</b><span>Plan check-off rate</span></div>
+</div>
+<main>
+ <section id="workoutView">
+  <h3 class="section-title">Choose your day</h3>
+  <div class="days" id="days"></div>
+  <h3 class="section-title" id="dayTitle">Monday · Upper</h3>
+  <p class="focus" id="dayFocus"></p>
+  <div id="exerciseList"></div>
+  <div class="panel"><h3 style="margin:0 0 10px">Session notes</h3><textarea id="notes" class="notes" placeholder="How did you feel? Any weight increases or form notes?"></textarea>
+   <div class="buttonrow"><button class="btn secondary" id="copyBtn">Copy session log</button><button class="btn primary" id="exportBtn">Export all data</button></div>
+   <p class="hint">Your logs save automatically on this device. Export regularly as a backup.</p>
+  </div>
+ </section>
+ <section id="progressView" class="hidden">
+  <h3 class="section-title">Your weekly overview</h3><div id="weekly"></div>
+  <div class="panel"><h3 style="margin-top:0">Progression rule</h3><p style="margin-bottom:0">When you can complete the top of your rep range on all sets with controlled technique and 2–3 reps still in reserve, increase the weight by the smallest available increment next time.</p></div>
+  <div class="panel"><h3 style="margin-top:0">Data backup</h3><p class="hint">Export your workout history as a JSON file. You can import it again if you change devices.</p><input id="importFile" type="file" accept=".json,application/json"><div class="buttonrow"><button class="btn secondary" id="importBtn">Import backup</button><button class="btn secondary" id="clearBtn">Reset all logs</button></div></div>
+ </section>
+ <footer>REPLOG · UL REST PPL · Progress steadily, train with control.</footer>
+</main>
+<script>
+const workouts=[
+{day:"Monday",short:"MON",name:"Upper",focus:"Chest · Back · Shoulders · Arms",exercises:[["Incline push-ups","3 × 6–10","Bodyweight"],["Dumbbell floor press","3 × 8–12","Dumbbells"],["One-arm dumbbell row","3 × 10–12 / side","Dumbbells"],["Standing shoulder press","2 × 8–12","Dumbbells"],["Lateral raises","2 × 12–15","Dumbbells"],["Biceps curls","2 × 10–15","Dumbbells"],["Overhead triceps extensions","2 × 10–15","Dumbbells"]]},
+{day:"Tuesday",short:"TUE",name:"Lower",focus:"Quads · Hamstrings · Glutes · Calves",exercises:[["Goblet squats","3 × 8–12","Dumbbell"],["Romanian deadlifts","3 × 8–12","Dumbbells"],["Reverse lunges","2 × 8–10 / leg","Dumbbells or bodyweight"],["Glute bridges","2 × 12–15","Bodyweight or dumbbell"],["Calf raises","3 × 12–20","Bodyweight or dumbbells"],["Dead bugs","2 × 8–10 / side","Bodyweight"]]},
+{day:"Wednesday",short:"WED",name:"Rest",focus:"Recover · Walk · Mobility",exercises:[["Easy walk","15–30 min","Optional"],["Shoulder mobility","3–5 min","Gentle"],["Hip and ankle mobility","3–5 min","Gentle"]]},
+{day:"Thursday",short:"THU",name:"Push",focus:"Chest · Shoulders · Triceps",exercises:[["Incline push-ups","3 × 6–10","Bodyweight"],["Dumbbell floor press","3 × 8–12","Dumbbells"],["Standing shoulder press","2 × 8–12","Dumbbells"],["Lateral raises","2 × 12–15","Dumbbells"],["Overhead triceps extensions","2 × 10–15","Dumbbells"]]},
+{day:"Friday",short:"FRI",name:"Pull",focus:"Back · Rear delts · Biceps",exercises:[["One-arm dumbbell row","3 × 10–12 / side","Dumbbell"],["Bent-over dumbbell row","2 × 10–12","Dumbbells"],["Reverse flyes","2 × 12–15","Dumbbells"],["Hammer curls","3 × 10–15","Dumbbells"],["Biceps curls","2 × 10–15","Dumbbells"]]},
+{day:"Saturday",short:"SAT",name:"Legs",focus:"Legs · Glutes · Stability",exercises:[["Split squats","3 × 8–10 / leg","Bodyweight or dumbbells"],["Romanian deadlifts","2 × 10–12","Dumbbells"],["Bodyweight squats","2 × 12–15","Bodyweight"],["Glute bridges","2 × 12–15","Bodyweight or dumbbell"],["Calf raises","3 × 15–20","Bodyweight or dumbbells"]]},
+{day:"Sunday",short:"SUN",name:"Rest",focus:"Full recovery",exercises:[["Rest and recharge","All day","Recovery"],["Optional easy walk","15–30 min","Optional"]]}
+];
+const $=id=>document.getElementById(id);
+const STORE="replog-v1";
+let state={selected:0,done:[],logs:{},notes:{},tab:"workout"};
+function load(){try{const x=JSON.parse(localStorage.getItem(STORE));if(x)state={...state,...x}}catch(e){}}
+function save(){localStorage.setItem(STORE,JSON.stringify(state));render()}
+function key(d,e){return d+"-"+e}
+function isDone(d,e){return state.done.includes(key(d,e))}
+function render(){
+ const w=workouts[state.selected], completed=w.exercises.filter((_,i)=>isDone(state.selected,i)).length, pct=Math.round(completed/w.exercises.length*100);
+ $("heroDay").textContent=w.day.toUpperCase()+" · SESSION";$("heroTitle").textContent=w.name+" day";$("heroFocus").textContent=w.focus;$("heroCount").textContent=completed+"/"+w.exercises.length;$("heroPct").textContent=pct+"%";$("heroBar").style.width=pct+"%";
+ $("statDone").textContent=state.done.length;$("statLogs").textContent=Object.values(state.logs).filter(v=>v&&(v.weight||v.reps)).length;
+ const total=workouts.reduce((n,x)=>n+x.exercises.length,0);$("statRate").textContent=Math.round(state.done.length/total*100)+"%";
+ $("days").innerHTML=workouts.map((x,i)=>`<button class="day ${i===state.selected?'active':''}" data-day="${i}"><strong>${x.short}</strong>${x.name}<div class="tick">${x.exercises.every((_,j)=>isDone(i,j))?'✓ Done':''}</div></button>`).join("");
+ $("dayTitle").textContent=w.day+" · "+w.name;$("dayFocus").textContent=w.focus;
+ $("exerciseList").innerHTML=w.exercises.map((e,i)=>{const k=key(state.selected,i),l=state.logs[k]||{};return `<article class="exercise ${isDone(state.selected,i)?'done':''}"><div class="exhead"><input class="check" type="checkbox" data-check="${i}" ${isDone(state.selected,i)?'checked':''}><div style="flex:1"><div class="exname">${e[0]}</div><div class="rx">${e[1]}</div><div class="tag">${e[2]}</div></div></div><div class="fields"><div><label>Weight (kg)</label><input data-field="weight" data-index="${i}" value="${esc(l.weight||'')}" placeholder="e.g. 5 or BW"></div><div><label>Reps completed</label><input data-field="reps" data-index="${i}" value="${esc(l.reps||'')}" placeholder="e.g. 10, 10, 8"></div></div></article>`}).join("");
+ $("notes").value=state.notes[state.selected]||"";
+ $("weekly").innerHTML=workouts.map((x,i)=>{let n=x.exercises.filter((_,j)=>isDone(i,j)).length;let records=x.exercises.map((e,j)=>{let l=state.logs[key(i,j)]||{};return l.weight||l.reps?`<div class="logged">${e[0]} — ${l.weight?esc(l.weight)+' kg':'weight not entered'} · ${l.reps?esc(l.reps)+' reps':'reps not entered'}</div>`:''}).join("");return `<div class="panel weekrow"><div class="weekhead"><strong>${x.day} · ${x.name}</strong><strong>${n}/${x.exercises.length}</strong></div><div class="bar"><span style="width:${n/x.exercises.length*100}%"></span></div>${records}</div>`}).join("");
+ $("workoutView").classList.toggle("hidden",state.tab!=="workout");$("progressView").classList.toggle("hidden",state.tab!=="progress");$("workoutTab").classList.toggle("active",state.tab==="workout");$("progressTab").classList.toggle("active",state.tab==="progress");
+ document.querySelectorAll("[data-day]").forEach(b=>b.onclick=()=>{state.selected=+b.dataset.day;save()});
+ document.querySelectorAll("[data-check]").forEach(b=>b.onchange=()=>{const k=key(state.selected,+b.dataset.check);state.done=b.checked?[...new Set([...state.done,k])]:state.done.filter(x=>x!==k);save()});
+ document.querySelectorAll("[data-field]").forEach(inp=>inp.onchange=()=>{const k=key(state.selected,+inp.dataset.index);state.logs[k]={...(state.logs[k]||{}),[inp.dataset.field]:inp.value};localStorage.setItem(STORE,JSON.stringify(state));render()});
+ $("notes").onchange=()=>{state.notes[state.selected]=$("notes").value;localStorage.setItem(STORE,JSON.stringify(state))};
+}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+$("workoutTab").onclick=()=>{state.tab="workout";save()};$("progressTab").onclick=()=>{state.tab="progress";save()};
+$("copyBtn").onclick=async()=>{const w=workouts[state.selected];let s="REPLOG — "+w.day+" / "+w.name+"\n"+w.exercises.map((e,i)=>{let l=state.logs[key(state.selected,i)]||{};return `${e[0]} | ${e[1]} | Done: ${isDone(state.selected,i)?'Yes':'No'} | Weight: ${l.weight||'-'} kg | Reps: ${l.reps||'-'}`}).join("\n")+"\nNotes: "+(state.notes[state.selected]||"None");try{await navigator.clipboard.writeText(s);alert("Session log copied!")}catch(e){prompt("Copy your session log:",s)}};
+$("exportBtn").onclick=()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="replog-backup.json";a.click();URL.revokeObjectURL(a.href)};
+$("importBtn").onclick=()=>{const f=$("importFile").files[0];if(!f){alert("Choose a REPLOG JSON backup first.");return}const r=new FileReader();r.onload=()=>{try{const x=JSON.parse(r.result);if(!Array.isArray(x.done)||!x.logs)throw Error();state={...state,...x};save();alert("Backup imported!")}catch(e){alert("That file doesn't look like a valid REPLOG backup.")}};r.readAsText(f)};
+$("clearBtn").onclick=()=>{if(confirm("Delete all workout check-offs, logs and notes on this device? Export a backup first if you want to keep them.")){state={selected:0,done:[],logs:{},notes:{},tab:"workout"};save()}};
+let installPrompt=null;window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();installPrompt=e;$("installBox").style.display="block"});$("installBtn").onclick=async()=>{if(installPrompt){installPrompt.prompt();await installPrompt.userChoice;installPrompt=null}else alert("On Android Chrome, use the browser menu ⋮ and choose 'Install app' or 'Add to Home screen'. This option appears after REPLOG is hosted over HTTPS.");};
+if("serviceWorker" in navigator && location.protocol.startsWith("http"))window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
+load();render();
+</script>
+</body></html>
